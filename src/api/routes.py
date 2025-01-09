@@ -65,6 +65,6 @@ def handle_private():
     user= User.query.get(id)
     if not user: 
          return jsonify({"msg": "something go wrong"})
-    return jsonify({"data" : user.serialize()}), 200
+    return jsonify({"user" : user.serialize()}), 200
 
 
