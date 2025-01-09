@@ -16,6 +16,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 			]
 		},
 		actions: {
+			register: async (formData) =>{
+				try {const resp = await fetch('https://friendly-halibut-4j967pwxwrw2qq7r-3001.app.github.dev/api/register' ,{
+					method:'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(formData)
+				})
+				if (!resp.ok) throw new Error ('Ooops, something went wrong')
+				const data = await resp.json()
+				localStorage.setItem('token', data.token)
+				console.log(data)
+				return true
+			}catch(error){
+			console.log(error)}	
+			return false
+			},
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
